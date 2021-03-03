@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package srv.proto;
+option go_package = "srv/proto/gen";
+
+// 版本
+message Version {
+    string version = 1;
+    string go_version = 2;
+    string git_commit = 3;
+    string built_time = 4;
+}

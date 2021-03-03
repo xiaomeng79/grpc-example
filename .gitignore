@@ -1,0 +1,6 @@
+bin/
+.vscode/
+.idea
+__debug_bin
+/target
+*.gen
