@@ -94,7 +94,7 @@ func runHttpServer() *http.ServeMux {
 	swaggerFileServer := http.FileServer(&assetfs.AssetFS{
 		Asset:    swagger.Asset,
 		AssetDir: swagger.AssetDir,
-		Prefix:   "api/proto/gen/swaggerjson",
+		Prefix:   "target/protoc-json",
 	})
 	serveMux.HandleFunc("/swagger/", func(w http.ResponseWriter, r *http.Request) {
 		if !strings.HasSuffix(r.URL.Path, "swagger.json") {
@@ -102,7 +102,7 @@ func runHttpServer() *http.ServeMux {
 			return
 		}
 		p := strings.TrimPrefix(r.URL.Path, "/swagger/")
-		p = path.Join("api/proto", p)
+		p = path.Join("srv/proto", p)
 		r.URL.Path = p
 		swaggerFileServer.ServeHTTP(w, r)
 	})

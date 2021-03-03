@@ -8,6 +8,8 @@ PACKAGE_VERSION=0.1.0
 # 构建定义
 GO_PATH=$(shell go env GOPATH)
 GO_VERSION=$(shell go version)
+GOPROXY=https://goproxy.cn,direct
+GO111MODULE=on
 GIT_COMMIT=$(shell git rev-parse --short HEAD 2> /dev/null || true)
 BUILD_TIME=$(shell date --utc --rfc-3339 ns 2> /dev/null | sed -e 's/ /T/')
 BUILD_DIR=target
@@ -21,6 +23,7 @@ PROTOC_JSON_DIR=$(BUILD_DIR)/protoc-json
 # 依赖工具
 GRPC_GATEWAY_VERSION=v2@v2.1.0
 PROTOC_PATH?=${BUILD_DIR}/protoc
+
 
 # 顶层规则
 .PHONY: all package clean
