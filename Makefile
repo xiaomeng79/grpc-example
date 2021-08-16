@@ -40,14 +40,14 @@ install-tools: ${BUILD_DIR}/gen/install-protoc
 ${BUILD_DIR}/gen/go-tools:
 	@echo "安装go的工具"
 	go get \
-		github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway \
-		github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2 \
 		google.golang.org/protobuf/cmd/protoc-gen-go \
+		golang.org/x/tools/cmd/stringer \
+		github.com/golangci/golangci-lint/cmd/golangci-lint \
 		google.golang.org/grpc/cmd/protoc-gen-go-grpc && \
 	go get github.com/go-bindata/go-bindata/... && \
 	go get github.com/elazarl/go-bindata-assetfs/... && \
-	go get golang.org/x/tools/cmd/stringer && \
-	go get github.com/golangci/golangci-lint/cmd/golangci-lint && \
+	go get	github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@v2.1.0 && \
+	go get	github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@v2.1.0 && \
 	mkdir -p `dirname $@` && touch $@
 
 ${BUILD_DIR}/gen/install-protoc:
@@ -58,6 +58,7 @@ ${BUILD_DIR}/gen/install-protoc:
 .PHONY: build-srv
 
 build: build-srv
+	@go mod tidy
 
 package: build
 	@echo "打包……"

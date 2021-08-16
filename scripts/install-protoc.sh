@@ -23,7 +23,6 @@ fi
 protoc-install() {
   echo "安装目录:"${PROTOC_PATH}
   mkdir -p ${PROTOC_PATH}
-  cd ${PROTOC_PATH}
   curl -LO ${PB_REL}/download/v${PROTOC_VERSION}/${PROTOC_FILE_ZIP}
   unzip -o ${PROTOC_FILE_ZIP} -d ${PROTOC_PATH}
   rm -rf ${PROTOC_FILE_ZIP}
